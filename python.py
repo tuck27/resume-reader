@@ -29,11 +29,20 @@ reader = pypdf.PdfReader("Hockey.pdf")
 num_pages = len(reader.pages)
 
 # define key terms
-string = "players"
+string1 = "players" #college education
+string2 = "ice" #skills
+string3 = "game" #experiences
+string4 = "stick" #certifications
 
 # extract text and do the search
 for page in reader.pages:
     text = page.extract_text() 
     # print(text)
-    res_search = re.search(string, text)
+    res_search = re.search(string1, text)
+    print(res_search)
+    res_search = re.search(string2, text)
+    print(res_search)
+    res_search = re.search(string3, text)
+    print(res_search)
+    res_search = re.search(string4, text)
     print(res_search)
