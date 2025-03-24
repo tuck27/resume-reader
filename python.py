@@ -23,38 +23,30 @@ import pypdf
 import re
 
 # open the pdf file
-reader = pypdf.PdfReader("Hockey.pdf")
+reader = pypdf.PdfReader("resume1.pdf")
 
 # get number of pages
 num_pages = len(reader.pages)
 
 # define key terms
-string1 = "players" #college education
-string2 = "ice" #skills
-string3 = "game" #experiences
-string4 = "stick" #certifications
+string1 = "Leadership" #college education
+string2 = "university" #skills
+string3 = "Python" #experiences
+string4 = "GPA" #certifications
 
 # extract text and do the search
 for page in reader.pages:
     text = page.extract_text() 
     # print(text)
     res_search = re.findall(string1, text)
-    len(res_search)
     print(res_search)
     res_search = re.findall(string2, text)
-    len(res_search)
     print(res_search)
     res_search = re.findall(string3, text)
-    len(res_search)
     print(res_search)
     res_search = re.findall(string4, text)
-    len(res_search)
     print(res_search)
 
-players_count = len(res_search)
-ice_count = len(res_search)
-game_count = len(res_search)
-stick_count = len(res_search)
 
 '''
 frequencyPointList = []
@@ -80,23 +72,23 @@ for words in ("Hockey.pdf"):
             print(type(points2))
             frequencyPointList.append(points2)
 '''
-pdf = "Hockey.pdf"
+pdf = "resume1.pdf"
 
-'''def get_points_for_pdf(pdf: "Hockey.pdf")-> tuple:
+def get_points_for_pdf(text)-> tuple:
     total_points = 0
     for word in pdf:
-        if word in "players":
+        if word == "Leadership":
             total_points += 1
-        elif word in "ice":
+        elif word == "university":
             total_points += 1
-        elif word in "game":
+        elif word == "Python":
             total_points += 1
-        elif word in "stick":
+        elif word == "GPA":
             total_points += 1
     return (total_points, total_points / len(word))
 
 print("Word                 | TOT | AVE ")
 print("---------------------+-----+-----")
-for word in "Hockey.pdf":
-    total_points, average_points = get_points_for_pdf(word)
-    print(f"{word:20} | {total_points:3} | {average_points:.3}")'''
+for word in extract_text(reader.pages):
+    total_points, average_points = get_points_for_pdf(text)
+    print(f"{word:20} | {total_points:3} | {average_points:.3}")
